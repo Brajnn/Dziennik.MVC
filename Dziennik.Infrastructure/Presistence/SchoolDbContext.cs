@@ -10,14 +10,14 @@ namespace Dziennik.Infrastructure.Presistence
 {
     public class SchoolDbContext :DbContext
     {
+        public SchoolDbContext(DbContextOptions<SchoolDbContext> options):base(options)
+        {
+            
+        }
         public DbSet<Mark> Marks { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Subject> Subjects { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=SchoolDb;Trusted_Connection=True;");
-        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
