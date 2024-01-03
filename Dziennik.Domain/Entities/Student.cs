@@ -11,8 +11,11 @@ namespace Dziennik.Domain.Entities
         public required int StudentId { get; set; }
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
+        public string? Email { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? City { get; set; }
+        public string? Street { get; set; }
+        public string? PostalCode { get; set; }
         public List<Mark> Marks { get; set; } = new List<Mark>();
     }
 }
