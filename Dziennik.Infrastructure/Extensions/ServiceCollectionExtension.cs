@@ -1,4 +1,6 @@
-﻿using Dziennik.Infrastructure.Presistence;
+﻿using Dziennik.Domain.Interfaces;
+using Dziennik.Infrastructure.Presistence;
+using Dziennik.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +19,10 @@ namespace Dziennik.Infrastructure.Extensions
         {
             services.AddDbContext<SchoolDbContext>(options => options.UseSqlServer(
                 configuraiton.GetConnectionString("School")));
+
+            services.AddScoped<IStudentRepository,StudentRepository>();
+            
         }
+        
     }
 }
