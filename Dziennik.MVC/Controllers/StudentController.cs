@@ -12,6 +12,12 @@ namespace Dziennik.MVC.Controllers
         {
             _studentService=studentService;
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(Student student)
         {
