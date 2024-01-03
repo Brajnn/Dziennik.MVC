@@ -1,4 +1,5 @@
-﻿using Dziennik.Application.Services;
+﻿using Dziennik.Application.Mappings;
+using Dziennik.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Dziennik.Application.Extensions
         public static void AddApplication(this IServiceCollection services)
         {
             services.AddScoped<IStudentService, StudentService>();
+            services.AddAutoMapper(typeof(StudentMappingProfile));
         }
     }
 
