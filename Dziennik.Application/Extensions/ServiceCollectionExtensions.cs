@@ -1,5 +1,8 @@
 ﻿using Dziennik.Application.Mappings;
 using Dziennik.Application.Services;
+using Dziennik.Application.Student;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,6 +18,10 @@ namespace Dziennik.Application.Extensions
         {
             services.AddScoped<IStudentService, StudentService>();
             services.AddAutoMapper(typeof(StudentMappingProfile));
+
+            services.AddValidatorsFromAssemblyContaining<StudentDtoValidator>()
+                .AddFluentValidationAutoValidation()
+                .AddFluentValidationClientsideAdapters();
         }
     }
 
