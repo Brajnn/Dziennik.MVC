@@ -25,5 +25,12 @@ namespace Dziennik.Application.Services
             var student = _mapper.Map<Domain.Entities.Student>(studentDto);
             await _studentRepository.Create(student);
         }
+
+        public async Task<IEnumerable<StudentDto>> GetAll()
+        {
+            var students = await _studentRepository.GetAll();
+            var dtos = _mapper.Map<IEnumerable<StudentDto>>(students);
+            return dtos;
+        }
     }
 }

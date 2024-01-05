@@ -6,5 +6,6 @@ namespace Dziennik.Application.Services
     public interface IStudentService
     {
         Task Create(StudentDto student);
+        Task<IEnumerable<StudentDto>> GetAll();
     }
 }

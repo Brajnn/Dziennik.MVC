@@ -9,6 +9,9 @@ namespace Dziennik.Application.Mappings
         public StudentMappingProfile()
         {
             CreateMap<StudentDto, Dziennik.Domain.Entities.Student>();
+
+            CreateMap<Dziennik.Domain.Entities.Student,StudentDto > ();
+
         }
     }
 }

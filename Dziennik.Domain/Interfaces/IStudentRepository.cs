@@ -5,5 +5,6 @@ namespace Dziennik.Domain.Interfaces
     public interface IStudentRepository
     {
         Task Create(Student student);
+Task<IEnumerable<Student>> GetAll();
     }
 }

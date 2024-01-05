@@ -14,6 +14,12 @@ namespace Dziennik.MVC.Controllers
             _studentService=studentService;
         }
 
+        public async Task<ActionResult> Index() //main student page
+        {
+            var students = await _studentService.GetAll();
+            return View(students);
+        }
+
         public ActionResult Create()
         {
             return View();

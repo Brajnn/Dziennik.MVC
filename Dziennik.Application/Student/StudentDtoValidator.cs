@@ -28,7 +28,7 @@ namespace Dziennik.Application.Student
                 .WithMessage("Last name should have maximum 40 characters");
             RuleFor(c => c.PhoneNumber)
                 .Matches(@"^\+\d{2} \d{3}-\d{3}-\d{3}$")
-                .WithMessage("Invalid phone number format. Use +XX-XXX-XXX-XXX format.");
+                .WithMessage("Invalid phone number format. Use +XX XXX-XXX-XXX format.");
             RuleFor(c => c.PostalCode)
                 .MaximumLength(6)
                 .WithMessage("Postal code should have maximum 6 characters"); ;
