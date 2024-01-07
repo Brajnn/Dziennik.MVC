@@ -9,7 +9,7 @@ namespace Dziennik.Application.Student
 {
     public class StudentDto
     {
-
+        public int StudentId { get; set; }
         public string FirstName { get; set; } = default!;
 
         public string LastName { get; set; }= default!;

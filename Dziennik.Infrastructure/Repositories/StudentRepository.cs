@@ -27,6 +27,9 @@ namespace Dziennik.Infrastructure.Repositories
         }
 
         public async Task<IEnumerable<Student>> GetAll()
-        => await _dbContext.Students.ToListAsync(); 
+        => await _dbContext.Students.ToListAsync();
+
+        public async Task<Student> GetById(int Id) =>
+            await _dbContext.Students.FirstAsync(c => c.StudentId == Id);
     }
 }
