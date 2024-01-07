@@ -1,22 +1,25 @@
-﻿using Dziennik.Application.Services;
+﻿
 using Dziennik.Application.Student;
+using Dziennik.Application.Student.Commands.CreateStudent;
+using Dziennik.Application.Student.Queries.GetAllStudents;
 using Dziennik.Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Dziennik.MVC.Controllers
 {
     public class StudentController:Controller
     {
-        private readonly IStudentService _studentService;
+        private readonly IMediator _mediator;
 
-        public StudentController(IStudentService studentService)
+        public StudentController(IMediator mediator)
         {
-            _studentService=studentService;
+            _mediator = mediator;
         }
 
         public async Task<ActionResult> Index() //main student page
         {
-            var students = await _studentService.GetAll();
+            var students = await _mediator.Send(new GatAllStudentsQuery());
             return View(students);
         }
 
@@ -26,15 +29,15 @@ namespace Dziennik.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(StudentDto student)
+        public async Task<IActionResult> Create(CreateStudentCommand command)
         {
             if(!ModelState.IsValid)
             {
-                return View();
+                return View(command);
             }
 
-            await _studentService.Create(student);
-            return RedirectToAction(nameof(Create)); //TODO: refactor
+            await _mediator.Send(command);
+            return RedirectToAction(nameof(Index)); //TODO: refactor
         }
     }
 }

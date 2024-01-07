@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dziennik.Application.Student
+namespace Dziennik.Application.Student.Commands.CreateStudent
 {
-    public class StudentDtoValidator:AbstractValidator<StudentDto>
+    public class CreateStudentCommandValidator : AbstractValidator<CreateStudentCommand>
     {
-        public StudentDtoValidator()
+        public CreateStudentCommandValidator()
         {
-            RuleFor(c=> c.FirstName)
+            RuleFor(c => c.FirstName)
                 .NotEmpty()
                 .WithMessage("The field cannot be empty")
                 .MinimumLength(2)
