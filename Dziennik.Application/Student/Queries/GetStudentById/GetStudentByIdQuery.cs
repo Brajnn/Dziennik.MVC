@@ -9,10 +9,10 @@ namespace Dziennik.Application.Student.Queries.GetStudentById
 {
     public class GetStudentByIdQuery: IRequest<StudentDto>
     {
-        public int Id { get; set; }
+        public int StudentId { get; set; }
         public GetStudentByIdQuery(int id)
         {
-            Id = id;
+            StudentId = id;
         }
     }
 }

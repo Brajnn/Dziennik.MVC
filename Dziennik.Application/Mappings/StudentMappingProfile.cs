@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Dziennik.Application.Student;
+using Dziennik.Application.Student.Commands.EditStudent;
 
 
 namespace Dziennik.Application.Mappings
@@ -11,7 +12,7 @@ namespace Dziennik.Application.Mappings
             CreateMap<StudentDto, Dziennik.Domain.Entities.Student>();
 
             CreateMap<Dziennik.Domain.Entities.Student,StudentDto > ();
-
+            CreateMap<StudentDto, EditStudentCommand>();
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿
+using AutoMapper;
 using Dziennik.Application.Student;
 using Dziennik.Application.Student.Commands.CreateStudent;
+using Dziennik.Application.Student.Commands.EditStudent;
 using Dziennik.Application.Student.Queries.GetAllStudents;
 using Dziennik.Application.Student.Queries.GetStudentById;
 using Dziennik.Domain.Entities;
@@ -12,10 +14,12 @@ namespace Dziennik.MVC.Controllers
     public class StudentController:Controller
     {
         private readonly IMediator _mediator;
+        private readonly IMapper _mapepr;
 
-        public StudentController(IMediator mediator)
+        public StudentController(IMediator mediator, IMapper mapepr)
         {
             _mediator = mediator;
+            _mapepr=mapepr;
         }
 
         public async Task<ActionResult> Index() //main student page
@@ -46,6 +50,28 @@ namespace Dziennik.MVC.Controllers
         { 
             var dto =await _mediator.Send(new GetStudentByIdQuery(id));   
             return View(dto);
+        }
+
+        [Route("Student/{id}/Edit")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var dto = await _mediator.Send(new GetStudentByIdQuery(id));
+           
+            EditStudentCommand model =_mapepr.Map<EditStudentCommand>(dto);
+            
+            return View(model);
+        }
+        [HttpPost]
+        [Route("Student/{id}/Edit")]
+        public async Task<IActionResult> Edit(int id,EditStudentCommand command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+
+            await _mediator.Send(command);
+            return RedirectToAction(nameof(Index));
         }
 
     }

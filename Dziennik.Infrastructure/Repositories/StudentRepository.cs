@@ -20,6 +20,10 @@ namespace Dziennik.Infrastructure.Repositories
         {
             _dbContext=dbContext;
         }
+
+        public async Task Commit()
+        => _dbContext.SaveChangesAsync();
+
         public async Task Create(Student student)
         {
             _dbContext.Add(student);
@@ -30,6 +34,6 @@ namespace Dziennik.Infrastructure.Repositories
         => await _dbContext.Students.ToListAsync();
 
         public async Task<Student> GetById(int Id) =>
-            await _dbContext.Students.FirstAsync(c => c.StudentId == Id);
+            await _dbContext.Students.FirstOrDefaultAsync(c => c.StudentId == Id);
     }
 }

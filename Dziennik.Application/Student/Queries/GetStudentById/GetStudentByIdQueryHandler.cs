@@ -21,7 +21,7 @@ namespace Dziennik.Application.Student.Queries.GetStudentById
         }
         public async Task<StudentDto> Handle(GetStudentByIdQuery request, CancellationToken cancellationToken)
         {
-            var student= await _studentRepository.GetById(request.Id);
+            var student= await _studentRepository.GetById(request.StudentId);
             var dto = _mapper.Map<StudentDto>(student);
             return dto;
 
