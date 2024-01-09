@@ -1,4 +1,5 @@
-﻿@model Dziennik.Application.Student.Commands.EditStudent.EditStudentCommand
+﻿@using Dziennik.Application.Mark.Commands
+@model Dziennik.Application.Student.Commands.EditStudent.EditStudentCommand
 
 @{
     ViewData["Title"] = "Edit";
@@ -54,10 +55,14 @@
     </div>
 </div>
 
+
 <div>
+    <partial name="_Addmark" model="new AddMarkCommand() {StudentId=Model.StudentId}"/>
     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/js/Student/Edit.js"></script>
 }

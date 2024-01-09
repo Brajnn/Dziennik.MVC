@@ -1,0 +1,47 @@
+﻿@model Dziennik.Application.Mark.Commands.AddMarkCommand
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createMarkModal">
+    Add new Mark
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="createMarkModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form asp-action="AddMark">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="createMarkModalLabel">Add new mark</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input asp-for="StudentId" class="form-control" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="SubjectId" class="control-label">Subject Id</label>
+                    <input asp-for="SubjectId" class="form-control" />
+                    <span asp-validation-for="SubjectId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Value" class="control-label"></label>
+                    <input asp-for="Value" class="form-control" />
+                    <span asp-validation-for="Value" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

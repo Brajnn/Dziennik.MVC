@@ -1,5 +1,6 @@
 ﻿
 using AutoMapper;
+using Dziennik.Application.Mark.Commands;
 using Dziennik.Application.Student;
 using Dziennik.Application.Student.Commands.CreateStudent;
 using Dziennik.Application.Student.Commands.EditStudent;
@@ -72,6 +73,19 @@ namespace Dziennik.MVC.Controllers
 
             await _mediator.Send(command);
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [Route("Student/Mark")]
+        public async Task<IActionResult> AddMark(AddMarkCommand command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _mediator.Send(command);
+            return Ok();
         }
 
     }
