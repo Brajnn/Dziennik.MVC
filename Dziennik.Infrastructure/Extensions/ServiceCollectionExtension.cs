@@ -21,7 +21,7 @@ namespace Dziennik.Infrastructure.Extensions
                 configuraiton.GetConnectionString("School")));
 
             services.AddScoped<IStudentRepository,StudentRepository>();
-            
+            services.AddScoped<IMarkRepository,MarkRepository>();
         }
         
     }
