@@ -1,6 +1,7 @@
 ﻿using Dziennik.Domain.Entities;
 using Dziennik.Domain.Interfaces;
 using Dziennik.Infrastructure.Presistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +24,9 @@ namespace Dziennik.Infrastructure.Repositories
             _dbContext.Marks.Add(mark);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Mark>> GetAllById(int id) =>
+           await _dbContext.Marks.Where(s => s.StudentId == id).ToListAsync();
+
     }
 }

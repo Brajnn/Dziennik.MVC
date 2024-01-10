@@ -1,14 +1,18 @@
 ﻿
 using AutoMapper;
 using Dziennik.Application.Mark.Commands;
+using Dziennik.Application.Mark.Queries.GetMark;
 using Dziennik.Application.Student;
 using Dziennik.Application.Student.Commands.CreateStudent;
 using Dziennik.Application.Student.Commands.EditStudent;
 using Dziennik.Application.Student.Queries.GetAllStudents;
 using Dziennik.Application.Student.Queries.GetStudentById;
 using Dziennik.Domain.Entities;
+using Dziennik.MVC.Extensions;
+using Dziennik.MVC.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Dziennik.MVC.Controllers
 {
@@ -43,7 +47,10 @@ namespace Dziennik.MVC.Controllers
             }
 
             await _mediator.Send(command);
-            return RedirectToAction(nameof(Index));
+            this.SetNotification("success", $"Created student: {command.FirstName} {command.LastName}");
+
+
+           return RedirectToAction(nameof(Index));
         }
 
         [Route("Student/{id}/Details")]
@@ -87,6 +94,12 @@ namespace Dziennik.MVC.Controllers
             await _mediator.Send(command);
             return Ok();
         }
-
+        [HttpGet]
+        [Route("Student/{id}/Mark")]
+        public async Task<IActionResult> GetMarks(int id)
+        {
+            var data = await _mediator.Send(new GetMarkQuery { Id = id });
+            return Ok(data);
+        }
     }
 }

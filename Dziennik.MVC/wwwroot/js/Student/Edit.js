@@ -1,18 +1,16 @@
-
 $(document).ready(function () {
-    $("#createMarkModal form").submit(function (event) {
+    $("#addMarkModal form").submit(function (event) {
         event.preventDefault();
-
         $.ajax({
             url: $(this).attr('action'),
             type: $(this).attr('method'),
             data: $(this).serialize(),
             success: function (data) {
-                toastr["success"]("Added Mark!")
-                LoadCarWorkshopServices()
+                toastr["success"]("Added Mark")
             },
             error: function () {
                 toastr["error"]("Something went wrong")
             }
+        })
     });
 });

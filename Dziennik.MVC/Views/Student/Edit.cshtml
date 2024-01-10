@@ -57,10 +57,13 @@
 
 
 <div>
-    <partial name="_Addmark" model="new AddMarkCommand() {StudentId=Model.StudentId}"/>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    <partial name="_AddMark" model="new AddMarkCommand() {StudentId=Model.StudentId}"/>
+    <a asp-action="Index" class="btn btn-secondary" >Back to List</a>
 </div>
 
+<h3>Marks:</h3>
+
+<div id="services" class="row" data-id="@Model.StudentId"></div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 

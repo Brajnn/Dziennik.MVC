@@ -10,5 +10,6 @@ namespace Dziennik.Domain.Interfaces
     public interface IMarkRepository
     {
         Task Add(Mark mark);
+        Task<IEnumerable<Mark>> GetAllById(int id);
     }
 }

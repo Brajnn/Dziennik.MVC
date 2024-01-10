@@ -1,18 +1,18 @@
 ﻿@model Dziennik.Application.Mark.Commands.AddMarkCommand
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createMarkModal">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMarkModal">
     Add new Mark
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="createMarkModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addMarkModal" tabindex="-1" aria-labelledby="addMarkModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <form asp-action="AddMark">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="createMarkModalLabel">Add new mark</h1>
+                <h1 class="modal-title fs-5" id="addMarkModalLabel">Add new mark</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
