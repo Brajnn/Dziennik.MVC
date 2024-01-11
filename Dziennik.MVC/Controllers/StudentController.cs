@@ -99,6 +99,7 @@ namespace Dziennik.MVC.Controllers
         public async Task<IActionResult> GetMarks(int id)
         {
             var data = await _mediator.Send(new GetMarkQuery { Id = id });
+            
             return Ok(data);
         }
     }

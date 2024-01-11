@@ -22,7 +22,6 @@ namespace Dziennik.Application.Mark.Queries.GetMark
         public async Task<IEnumerable<MarkDto>> Handle(GetMarkQuery request, CancellationToken cancellationToken)
         {
             var result =await  _markRepository.GetAllById(request.Id);
-
             var dtos= _mapper.Map<IEnumerable<MarkDto>>(result);
 
             return dtos;

@@ -22,7 +22,7 @@ namespace Dziennik.Infrastructure.Repositories
         }
 
         public async Task Commit()
-        => _dbContext.SaveChangesAsync();
+        =>await _dbContext.SaveChangesAsync();
 
         public async Task Create(Student student)
         {
