@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Dziennik.Domain.Entities;
 using Dziennik.Domain.Interfaces;
 using MediatR;
 using System;
@@ -13,18 +14,35 @@ namespace Dziennik.Application.Mark.Queries.GetMark
     {
         private readonly IMapper _mapper;
         private readonly IMarkRepository _markRepository;
+        private readonly ISubjectRepository _subjectRepository;
 
-        public GetMarkQueryHandler(IMarkRepository markRepository, IMapper mapper)
+        public GetMarkQueryHandler(IMarkRepository markRepository, IMapper mapper, ISubjectRepository subjectRepository)
         {
             _mapper=mapper;
             _markRepository = markRepository;
+            _subjectRepository = subjectRepository;
         }
         public async Task<IEnumerable<MarkDto>> Handle(GetMarkQuery request, CancellationToken cancellationToken)
         {
-            var result =await  _markRepository.GetAllById(request.Id);
-            var dtos= _mapper.Map<IEnumerable<MarkDto>>(result);
+            var marks =await  _markRepository.GetAllById(request.Id);
+            var subjectIds = marks.Select(mark => mark.SubjectId).Distinct();
+            var subjects = await _subjectRepository.GetSubjectsByIds(subjectIds);
+
+            var dtos = marks.Select(mark =>
+            {
+                var subject = subjects.FirstOrDefault(s => s.SubjectId == mark.SubjectId);
+                return new MarkDto
+                {
+                    SubjectId = mark.SubjectId,
+                    SubjectName = subject?.Name ?? "Unknown Subject",
+                    Value = mark.Value
+                };
+            });
 
             return dtos;
+            //var dtos = _mapper.Map<IEnumerable<MarkDto>>(result);
+
+            //return dtos;
         }
     }
 }

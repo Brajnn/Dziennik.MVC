@@ -2,6 +2,7 @@
 using Dziennik.Application.Mark;
 using Dziennik.Application.Student;
 using Dziennik.Application.Student.Commands.EditStudent;
+using Dziennik.Application.Subject;
 
 
 namespace Dziennik.Application.Mappings
@@ -15,6 +16,8 @@ namespace Dziennik.Application.Mappings
             CreateMap<Dziennik.Domain.Entities.Student,StudentDto > ();
             CreateMap<StudentDto, EditStudentCommand>();
             CreateMap<MarkDto, Domain.Entities.Mark>()
+                .ReverseMap();
+            CreateMap<SubjectDto, Domain.Entities.Subject>()
                 .ReverseMap();
         }
     }

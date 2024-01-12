@@ -25,7 +25,7 @@ $(document).ready(function () {
 
         // Iteruj przez oceny i dodaj je do elementu o id "marks"
         marks.forEach(function (mark) {
-            var markElement = $("<div>").text("Subject: " + mark.subjectId + ", Value: " + mark.value);
+            var markElement = $("<div>").text("Subject: " + mark.subjectName + ", Value: " + mark.value);
             $("#marks").append(markElement);
         });
     }
