@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Dziennik.Application.Student.Queries.GetAllStudents
 {
-    public class GatAllStudentsQuery : IRequest<IEnumerable<StudentDto>>
+    public class GetAllStudentsQuery : IRequest<IEnumerable<StudentDto>>
     {
-
+        public string SearchPhrase { get; set; }
     }
 }

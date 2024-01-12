@@ -9,17 +9,25 @@
 <p>
     <a asp-action="Create" class="btn btn-success">Create New</a>
 </p>
+<form method="get" asp-controller="Student" asp-action="Index">
+    <div class="mb-3">
+        <label for="searchPhrase" class="form-label">Search for student</label>
+        <input type="text" class="form-control" id="searchPhrase" name="searchPhrase" placeholder="Search" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
+                First Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                Last Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                Email
             </th>
         </tr>
     </thead>

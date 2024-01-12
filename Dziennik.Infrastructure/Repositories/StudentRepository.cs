@@ -35,5 +35,13 @@ namespace Dziennik.Infrastructure.Repositories
 
         public async Task<Student> GetById(int Id) =>
             await _dbContext.Students.FirstOrDefaultAsync(c => c.StudentId == Id);
+
+        public async Task<IEnumerable<Student>> GetStudentsBySearchPhrase(string searchPhrase)
+        {          
+            return await _dbContext.Students
+                .Where(student => student.FirstName.ToLower().Contains(searchPhrase.ToLower()) 
+                                || student.LastName.ToLower().Contains(searchPhrase.ToLower()))
+                .ToListAsync();
+        }
     }
 }

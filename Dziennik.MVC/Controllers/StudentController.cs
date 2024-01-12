@@ -27,9 +27,9 @@ namespace Dziennik.MVC.Controllers
             _mapepr=mapepr;
         }
 
-        public async Task<ActionResult> Index() //main student page
+        public async Task<ActionResult> Index(string searchPhrase) //main student page
         {
-            var students = await _mediator.Send(new GatAllStudentsQuery());
+            var students = await _mediator.Send(new GetAllStudentsQuery { SearchPhrase=searchPhrase});
             return View(students);
         }
 

@@ -7,6 +7,7 @@ namespace Dziennik.Domain.Interfaces
         Task Create(Student student);
         Task<IEnumerable<Student>> GetAll();
         Task<Student> GetById(int Id);
+        Task<IEnumerable<Student>> GetStudentsBySearchPhrase(string searchPhrase);
         Task Commit();
     }
 }

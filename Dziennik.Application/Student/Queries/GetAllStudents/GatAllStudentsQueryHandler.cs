@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Dziennik.Domain.Entities;
 using Dziennik.Domain.Interfaces;
 using MediatR;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace Dziennik.Application.Student.Queries.GetAllStudents
 {
     
-    public class GatAllStudentsQueryHandler : IRequestHandler<GatAllStudentsQuery, IEnumerable<StudentDto>>
+    public class GatAllStudentsQueryHandler : IRequestHandler<GetAllStudentsQuery, IEnumerable<StudentDto>>
     {
         private readonly IStudentRepository _studentRepository;
         private readonly IMapper _mapper;
@@ -20,9 +21,17 @@ namespace Dziennik.Application.Student.Queries.GetAllStudents
             _studentRepository=studentRepository;
             _mapper=mapper;
         }
-        public async Task<IEnumerable<StudentDto>> Handle(GatAllStudentsQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<StudentDto>> Handle(GetAllStudentsQuery request, CancellationToken cancellationToken)
         {
-            var students = await _studentRepository.GetAll();
+            IEnumerable<Domain.Entities.Student> students;
+            if (!string.IsNullOrEmpty(request.SearchPhrase))
+            {
+                students = await _studentRepository.GetStudentsBySearchPhrase(request.SearchPhrase);
+            }
+            else
+            {
+                students = await _studentRepository.GetAll();
+            }
             var dtos = _mapper.Map<IEnumerable<StudentDto>>(students);
             return dtos;
         }
