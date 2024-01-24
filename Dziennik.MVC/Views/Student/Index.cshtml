@@ -1,5 +1,6 @@
-﻿@model IEnumerable<Dziennik.Application.Student.StudentDto>
-
+﻿@model X.PagedList.IPagedList<Dziennik.Application.Student.StudentDto>
+@using X.PagedList.Mvc.Core
+@using Dziennik.Application.Student
 @{
     ViewData["Title"] = "Students";
 }
@@ -16,6 +17,10 @@
     </div>
     <button type="submit" class="btn btn-primary">Search</button>
 </form>
+<br />
+<div>
+    Showing records @Model.FirstItemOnPage - @Model.LastItemOnPage out of @Model.TotalItemCount records
+</div>
 
 <table class="table">
     <thead>
@@ -51,3 +56,27 @@
 }
     </tbody>
 </table>
+<br />
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item @(Model.PageNumber == 1 ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+
+        @for (int i = 1; i <= Model.PageCount; i++)
+        {
+            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = i, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })">@i</a>
+            </li>
+        }
+
+        <li class="page-item @(Model.PageNumber == Model.PageCount ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

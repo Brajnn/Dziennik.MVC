@@ -13,6 +13,7 @@ using Dziennik.MVC.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using X.PagedList;
 
 namespace Dziennik.MVC.Controllers
 {
@@ -27,10 +28,24 @@ namespace Dziennik.MVC.Controllers
             _mapepr=mapepr;
         }
 
-        public async Task<ActionResult> Index(string searchPhrase) //main student page
+        public async Task<ActionResult> Index(string currentFilter, string searchPhrase,int? page) //main student page
         {
+
+            if (searchPhrase != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchPhrase = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchPhrase;
+
             var students = await _mediator.Send(new GetAllStudentsQuery { SearchPhrase=searchPhrase});
-            return View(students);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(students.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult Create()
