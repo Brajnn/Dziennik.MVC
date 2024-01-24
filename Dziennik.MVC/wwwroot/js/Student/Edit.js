@@ -18,16 +18,41 @@ $(document).ready(function () {
         });
     }
 
-    // Funkcja do renderowania ocen
     function renderMarks(marks) {
         // Wyczyœæ istniej¹ce oceny przed ponownym renderowaniem
         $("#marks").empty();
 
-        // Iteruj przez oceny i dodaj je do elementu o id "marks"
+        // Stwórz tabelê Bootstrapa
+        var tableElement = $("<div>").addClass("table-responsive");
+        var table = $("<table>").addClass("table table-bordered");
+        var thead = $("<thead>").append("<tr><th scope='col'>Subject</th><th scope='col'>Mark</th></tr>");
+        var tbody = $("<tbody>");
+        var groupedMarks = {};
         marks.forEach(function (mark) {
-            var markElement = $("<div>").text("Subject: " + mark.subjectName + ", Value: " + mark.value);
-            $("#marks").append(markElement);
+
+            var subjectName = mark.subjectName;
+            var markValue = mark.value || "Brak ocen";
+
+            // Jeœli przedmiot nie istnieje w obiekcie, utwórz go
+            if (!groupedMarks[subjectName]) {
+                groupedMarks[subjectName] = [markValue];
+            } else {
+                // Jeœli przedmiot ju¿ istnieje, dodaj ocenê do istniej¹cej tablicy
+                groupedMarks[subjectName].push(markValue);
+            }
         });
+         Object.keys(groupedMarks).forEach(function (subjectName) {
+        var markValues = groupedMarks[subjectName];
+        var markValueString = markValues.join(', ');
+        var row = $("<tr>").append("<td>" + subjectName + "</td><td>" + markValueString + "</td>");
+        tbody.append(row);
+    });
+
+
+        table.append(thead, tbody);
+
+        tableElement.append(table);
+        $("#marks").append(tableElement);
     }
 
     // Wczytaj i zrenderuj oceny po za³adowaniu strony
