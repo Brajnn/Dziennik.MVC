@@ -43,5 +43,14 @@ namespace Dziennik.Infrastructure.Repositories
                                 || student.LastName.ToLower().Contains(searchPhrase.ToLower()))
                 .ToListAsync();
         }
+        public async Task Delete(int id)
+        {
+            var student =await _dbContext.Students.FirstOrDefaultAsync(x => x.StudentId == id);
+            if (student != null)
+            {
+                _dbContext.Remove(student);
+                await _dbContext.SaveChangesAsync();
+            }
+        }
     }
 }

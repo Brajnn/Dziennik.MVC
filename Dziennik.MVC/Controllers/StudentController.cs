@@ -4,6 +4,7 @@ using Dziennik.Application.Mark.Commands;
 using Dziennik.Application.Mark.Queries.GetMark;
 using Dziennik.Application.Student;
 using Dziennik.Application.Student.Commands.CreateStudent;
+using Dziennik.Application.Student.Commands.DeleteStudent;
 using Dziennik.Application.Student.Commands.EditStudent;
 using Dziennik.Application.Student.Queries.GetAllStudents;
 using Dziennik.Application.Student.Queries.GetStudentById;
@@ -66,6 +67,14 @@ namespace Dziennik.MVC.Controllers
 
 
            return RedirectToAction(nameof(Index));
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var command = new DeleteStudentCommand { StudentId = id };
+            await _mediator.Send(command);
+
+            return RedirectToAction(nameof(Index));
         }
 
         [Route("Student/{id}/Details")]
