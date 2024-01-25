@@ -52,15 +52,16 @@ $(document).ready(function () {
 
 
 
+
     function loadSubjects() {
         $.ajax({
             url: "/Subject/Index",
             method: "GET",
             success: function (data) {
-                console.log("Itam array:", data);
+                console.log("Items array:", data);
 
                 if (Array.isArray(data)) {
-                    renderSubjects(data);
+                    renderSubjectDropdown(data);
                 } else {
                     console.error("Item data is not in array form:", data);
                 }
@@ -71,17 +72,16 @@ $(document).ready(function () {
         });
     }
 
-    function renderSubjects(subjects) {
-        var subjectsList = $("<ul>");
+    function renderSubjectDropdown(subjects) {
+        var dropdown = $("#subjectDropdown");
+
         subjects.forEach(function (subject) {
-            var listItem = $("<li>").text(subject.name);
-            subjectsList.append(listItem);
+            var option = $("<option>")
+                .val(subject.subjectId)
+                .text(subject.name);
+            dropdown.append(option);
         });
-
-        $("#subjects").empty().append(subjectsList);
     }
-
-
 
     loadSubjects();
     loadMarks();
