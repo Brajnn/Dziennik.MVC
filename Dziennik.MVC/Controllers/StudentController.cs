@@ -126,5 +126,11 @@ namespace Dziennik.MVC.Controllers
             
             return Ok(data);
         }
+        public async Task<IActionResult> GetSubject(int id)
+        {
+            var data = await _mediator.Send(new GetMarkQuery { Id = id });
+
+            return Ok(data);
+        }
     }
 }

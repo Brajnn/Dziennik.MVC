@@ -12,7 +12,7 @@ $(document).ready(function () {
                 renderMarks(data);
             },
             error: function () {
-                console.error("B³¹d podczas pobierania ocen");
+                console.error("Error loading grades");
             }
         });
     }
@@ -28,7 +28,7 @@ $(document).ready(function () {
         marks.forEach(function (mark) {
 
             var subjectName = mark.subjectName;
-            var markValue = mark.value || "Brak ocen";
+            var markValue = mark.value || "No Grades";
 
             if (!groupedMarks[subjectName]) {
                 groupedMarks[subjectName] = [markValue];
@@ -50,6 +50,40 @@ $(document).ready(function () {
         $("#marks").append(tableElement);
     }
 
+
+
+    function loadSubjects() {
+        $.ajax({
+            url: "/Subject/Index",
+            method: "GET",
+            success: function (data) {
+                console.log("Itam array:", data);
+
+                if (Array.isArray(data)) {
+                    renderSubjects(data);
+                } else {
+                    console.error("Item data is not in array form:", data);
+                }
+            },
+            error: function () {
+                console.error("Error loading items");
+            }
+        });
+    }
+
+    function renderSubjects(subjects) {
+        var subjectsList = $("<ul>");
+        subjects.forEach(function (subject) {
+            var listItem = $("<li>").text(subject.name);
+            subjectsList.append(listItem);
+        });
+
+        $("#subjects").empty().append(subjectsList);
+    }
+
+
+
+    loadSubjects();
     loadMarks();
 
     $("#addMarkModal form").submit(function (event) {
@@ -61,12 +95,13 @@ $(document).ready(function () {
             type: form.attr('method'),
             data: form.serialize(),
             success: function (data) {
-                toastr["success"]("Dodano ocenê");
+                toastr["success"]("Success! Grade Added.");
                 loadMarks();
             },
             error: function () {
-                toastr["error"]("Coœ posz³o nie tak");
+                toastr["error"]("Something went wrong.");
             }
         });
     });
+
 });

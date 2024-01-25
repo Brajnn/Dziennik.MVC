@@ -18,6 +18,12 @@ namespace Dziennik.MVC.Controllers
             var query = new GetAllSubjectsQuery();
             var subjects = await _mediator.Send(query);
 
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                return Json(subjects);
+            }
+
+            ViewBag.SubjectsList = subjects;
             return View(subjects);
         }
     }

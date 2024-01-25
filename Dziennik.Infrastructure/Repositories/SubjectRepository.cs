@@ -28,5 +28,10 @@ namespace Dziennik.Infrastructure.Repositories
         {
             return await _dbContext.Subjects.Where(subject => subjectIds.Contains(subject.SubjectId)).ToListAsync();
         }
+        public async Task<Subject> GetByName(string subjectName)
+        {
+            return await _dbContext.Subjects
+                .FirstOrDefaultAsync(subject => subject.Name == subjectName);
+        }
     }
 }

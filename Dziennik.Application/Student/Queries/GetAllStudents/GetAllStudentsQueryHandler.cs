@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 namespace Dziennik.Application.Student.Queries.GetAllStudents
 {
     
-    public class GatAllStudentsQueryHandler : IRequestHandler<GetAllStudentsQuery, IEnumerable<StudentDto>>
+    public class GetAllStudentsQueryHandler : IRequestHandler<GetAllStudentsQuery, IEnumerable<StudentDto>>
     {
         private readonly IStudentRepository _studentRepository;
         private readonly IMapper _mapper;
 
-        public GatAllStudentsQueryHandler(IStudentRepository studentRepository, IMapper mapper)
+        public GetAllStudentsQueryHandler(IStudentRepository studentRepository, IMapper mapper)
         {
             _studentRepository=studentRepository;
             _mapper=mapper;
