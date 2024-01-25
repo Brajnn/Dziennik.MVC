@@ -51,8 +51,9 @@
             <td>
                 <a class="btn btn-warning" asp-controller="Student" asp-action="Details" asp-route-id="@item.StudentId">Details</a>
                 <a class="btn btn-secondary" asp-controller="Student" asp-action="Edit" asp-route-id="@item.StudentId">Edit</a>
-                <a class="btn btn-danger" asp-controller="Student" asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
-            </td>
+                    <a class="btn btn-danger" asp-controller="Student" asp-action="Delete" asp-route-id="@item.StudentId"
+                       onclick="confirmDelete('@item.StudentId');">Delete</a>
+                </td>
         </tr>
 }
     </tbody>
@@ -81,3 +82,10 @@
         </li>
     </ul>
 </nav>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script src="~/js/Student/ConfirmDeleteStudent.js"></script>
+}
