@@ -1,6 +1,9 @@
-﻿using Dziennik.Application.Subject.Queries.GetAllSubjects;
+﻿using Dziennik.Application.Student.Commands.DeleteStudent;
+using Dziennik.Application.Subject.Commands.DeleteSubject;
+using Dziennik.Application.Subject.Queries.GetAllSubjects;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dziennik.MVC.Controllers
 {
@@ -25,6 +28,15 @@ namespace Dziennik.MVC.Controllers
 
             ViewBag.SubjectsList = subjects;
             return View(subjects);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+
+            var command = new DeleteSubjectCommand { SubjectId = id };
+            await _mediator.Send(command);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

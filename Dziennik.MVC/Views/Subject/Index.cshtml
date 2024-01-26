@@ -1,22 +1,35 @@
 ﻿@model IEnumerable<Dziennik.Application.Subject.SubjectDto>
-
+@{
+    ViewData["Title"] = "Subjects";
+}
 <h2>All Subjects</h2>
 
 <table class="table">
     <thead>
         <tr>
-            <th>SubjectId</th>
+            <th>Subject Id</th>
             <th>Name</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var subject in Model)
+        @foreach (var item in Model)
         {
             <tr>
-                <td>@subject.SubjectId</td>
-                <td>@subject.Name</td>
-
+                <td>@item.SubjectId</td>
+                <td>@item.Name</td>
+                <td>
+                <a class="btn btn-danger" asp-controller="Subject" asp-action="Delete" asp-route-id="@item.SubjectId"
+                   onclick="confirmDelete('@item.SubjectId');">Delete</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script src="~/js/Subject/ConfirmDeleteSubject.js"></script>
+}

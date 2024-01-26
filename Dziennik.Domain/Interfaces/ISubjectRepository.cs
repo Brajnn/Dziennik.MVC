@@ -12,5 +12,6 @@ namespace Dziennik.Domain.Interfaces
         Task<IEnumerable<Subject>> GetAll();
         Task<IEnumerable<Subject>> GetSubjectsByIds(IEnumerable<int> subjectIds);
         Task<Subject> GetByName(string subjectName);
+        Task Delete(int id);
     }
 }

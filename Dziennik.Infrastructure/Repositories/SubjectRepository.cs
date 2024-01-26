@@ -33,5 +33,15 @@ namespace Dziennik.Infrastructure.Repositories
             return await _dbContext.Subjects
                 .FirstOrDefaultAsync(subject => subject.Name == subjectName);
         }
+        public async Task Delete(int id)
+        {
+
+            var subject = await _dbContext.Subjects.FirstOrDefaultAsync(x => x.SubjectId == id);
+            if (subject != null)
+            {
+                _dbContext.Remove(subject);
+                await _dbContext.SaveChangesAsync();
+            }
+        }
     }
 }
