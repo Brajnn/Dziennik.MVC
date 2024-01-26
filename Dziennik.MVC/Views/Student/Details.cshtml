@@ -53,6 +53,20 @@
         </dd>
     </dl>
 </div>
+<br />
+
+<h3>Marks:</h3>
+
+<div id="marks" class="row" data-id="@Model.StudentId"></div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script src="~/js/Student/Edit.js"></script>
+}
+
 <div>
     <a class="btn btn-secondary" asp-controller="Student" asp-action="Edit" asp-route-id="@Model.StudentId">Edit</a>
     <a asp-action="Index" class="btn btn-primary">Back to List</a>

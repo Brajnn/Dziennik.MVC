@@ -22,7 +22,7 @@ $(document).ready(function () {
 
         var tableElement = $("<div>").addClass("table-responsive");
         var table = $("<table>").addClass("table table-bordered");
-        var thead = $("<thead>").append("<tr><th scope='col'>Subject</th><th scope='col'>Mark</th></tr>");
+        var thead = $("<thead>").append("<tr><th scope='col'>Subjects</th><th scope='col'>Marks</th></tr>");
         var tbody = $("<tbody>");
         var groupedMarks = {};
         marks.forEach(function (mark) {

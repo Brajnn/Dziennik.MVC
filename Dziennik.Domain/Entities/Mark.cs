@@ -9,7 +9,7 @@ namespace Dziennik.Domain.Entities
     public class Mark
     {
         public int MarkId { get; set; }
-        public int Value { get; set; }
+        public float Value { get; set; }
 
         public int StudentId { get; set; } 
         public Student Student { get; set; }

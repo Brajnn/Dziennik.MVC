@@ -8,7 +8,7 @@ namespace Dziennik.Application.Mark
 {
     public class MarkDto
     {
-        public int Value { get; set; }
+        public float Value { get; set; }
         public int SubjectId { get; set; }
         public string SubjectName { get; set; }
     }

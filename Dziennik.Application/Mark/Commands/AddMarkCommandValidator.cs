@@ -11,8 +11,11 @@ namespace Dziennik.Application.Mark.Commands
     {
         public AddMarkCommandValidator()
         {
-            RuleFor(s => s.Value).NotEmpty().NotNull();
-            RuleFor(s => s.SubjectId).NotEmpty().NotNull();
+            RuleFor(s => s.Value)
+               .NotEmpty().WithMessage("The Value field is required.")
+               .GreaterThanOrEqualTo(1).WithMessage("The Value must be greater than or equal to 1.")
+               .LessThanOrEqualTo(6).WithMessage("The Value must be less than or equal to 6.");
+
         }
     }
 }
