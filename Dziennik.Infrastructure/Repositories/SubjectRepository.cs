@@ -33,6 +33,11 @@ namespace Dziennik.Infrastructure.Repositories
             return await _dbContext.Subjects
                 .FirstOrDefaultAsync(subject => subject.Name == subjectName);
         }
+        public async Task Create(Subject subject)
+        {
+            _dbContext.Add(subject);
+            await _dbContext.SaveChangesAsync();
+        }
         public async Task Delete(int id)
         {
 

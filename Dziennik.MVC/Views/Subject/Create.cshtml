@@ -1,0 +1,28 @@
+﻿@using Dziennik.Application.Subject.Commands.CreateSubject;
+
+@model CreateSubjectCommand
+<h1>Create Subject</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form action="/Subject/Create" method="post">
+            <div class="form-group mb-3">
+                <label class="control-label" asp-for="Name">Name</label>
+                <input class="form-control" type="text" asp-for="Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <input type="submit" value="Create" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
