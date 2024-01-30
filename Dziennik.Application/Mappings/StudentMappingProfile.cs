@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Dziennik.Application.Class;
 using Dziennik.Application.Mark;
 using Dziennik.Application.Student;
 using Dziennik.Application.Student.Commands.EditStudent;
@@ -19,6 +20,7 @@ namespace Dziennik.Application.Mappings
                 .ReverseMap();
             CreateMap<SubjectDto, Domain.Entities.Subject>()
                 .ReverseMap();
+            CreateMap<ClassDto, Domain.Entities.Class>().ReverseMap();
         }
     }
 }
