@@ -16,6 +16,9 @@ namespace Dziennik.Domain.Entities
         public string? City { get; set; }
         public string? Street { get; set; }
         public string? PostalCode { get; set; }
+
+        public int ClassId { get; set; }
+        public Class Class { get; set; }
         public List<Mark> Marks { get; set; } = new List<Mark>();
     }
 }
