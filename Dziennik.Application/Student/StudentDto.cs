@@ -19,5 +19,6 @@ namespace Dziennik.Application.Student
         public string? Street { get; set; }
         public string? PostalCode { get; set; }
         public int ClassId { get; set; }
+        public string? ClassName { get; set; }
     }
 }

@@ -11,5 +11,6 @@ namespace Dziennik.Domain.Interfaces
     {
         Task<IEnumerable<Class>> GetAll();
         Task<Class> GetById(int Id);
+        Task<string> GetClassNameById(int classId);
     }
 }

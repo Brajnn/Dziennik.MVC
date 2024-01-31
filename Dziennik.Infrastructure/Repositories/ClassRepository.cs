@@ -26,6 +26,15 @@ namespace Dziennik.Infrastructure.Repositories
 
         public async Task<Class> GetById(int Id) =>
          await _dbContext.Classes.FirstOrDefaultAsync(c=> c.ClassId == Id);
+        public async Task<string> GetClassNameById(int classId)
+        {
+            var className = await _dbContext.Classes
+            .Where(c => c.ClassId == classId)
+            .Select(c => c.ClassName)
+            .FirstOrDefaultAsync();
+
+            return className;
+        }
 
     }
 }
