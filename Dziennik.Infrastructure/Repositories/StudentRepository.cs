@@ -52,5 +52,11 @@ namespace Dziennik.Infrastructure.Repositories
                 await _dbContext.SaveChangesAsync();
             }
         }
+        public async Task<List<Student>> GetStudentsByClassId(int classId)
+        {
+            return await _dbContext.Students
+                .Where(s => s.ClassId == classId)
+                .ToListAsync();
+        }
     }
 }

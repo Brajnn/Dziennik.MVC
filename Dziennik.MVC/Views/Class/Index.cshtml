@@ -11,20 +11,35 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Class Id</th>
-            <th>Name</th>
+            <th>
+                Class Id
+            </th>
+            <th>
+                Class Name
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.ClassId</td>
-                <td>@item.ClassName</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClassId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClassName)
+                </td>
+                <td>
+                    <a class="btn btn-warning" asp-controller="Class" asp-action="Details" asp-route-id="@item.ClassId">Details</a>
+                   @* <a class="btn btn-secondary" asp-controller="Class" asp-action="Edit" asp-route-id="@item.ClassId">Edit</a>
+                    <a class="btn btn-danger" asp-controller="Class" asp-action="Delete" asp-route-id="@item.ClassId"
+                onclick="confirmDelete('@item.ClassId');">Delete</a>*@
+                </td>
             </tr>
         }
     </tbody>
 </table>
+<br />
 
 @section Scripts {
     @{

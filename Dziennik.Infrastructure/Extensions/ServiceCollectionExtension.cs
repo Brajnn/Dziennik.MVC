@@ -24,6 +24,7 @@ namespace Dziennik.Infrastructure.Extensions
             services.AddScoped<IMarkRepository,MarkRepository>();
             services.AddScoped<ISubjectRepository, SubjectRepository>();
             services.AddScoped<IClassRepository, ClassRepository>();
+            services.AddScoped<ITeacherRepository, TeacherRepository>();
         }
         
     }

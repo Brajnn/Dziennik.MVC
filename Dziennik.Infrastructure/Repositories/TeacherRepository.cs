@@ -10,22 +10,20 @@ using System.Threading.Tasks;
 
 namespace Dziennik.Infrastructure.Repositories
 {
-    public class ClassRepository:IClassRepository
+    public class TeacherRepository : ITeacherRepository
     {
         private readonly SchoolDbContext _dbContext;
 
-        public ClassRepository(SchoolDbContext dbContext)
+        public TeacherRepository(SchoolDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<Class>> GetAll()
+        public async Task<IEnumerable<Teacher>> GetAll()
         {
-            return await _dbContext.Classes.ToListAsync();
+            return await _dbContext.Teachers.ToListAsync();
         }
 
-        public async Task<Class> GetById(int Id) =>
-         await _dbContext.Classes.FirstOrDefaultAsync(c=> c.ClassId == Id);
-
+      
     }
 }

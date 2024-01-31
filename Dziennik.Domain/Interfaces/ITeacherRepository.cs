@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Dziennik.Domain.Interfaces
 {
-    public interface IClassRepository
+    public interface ITeacherRepository
     {
-        Task<IEnumerable<Class>> GetAll();
-        Task<Class> GetById(int Id);
+        Task<IEnumerable<Teacher>> GetAll();
     }
 }

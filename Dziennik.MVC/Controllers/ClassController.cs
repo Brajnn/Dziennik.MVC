@@ -1,4 +1,6 @@
 ﻿using Dziennik.Application.Class.Queries.GetAllClasses;
+using Dziennik.Application.Class.Queries.GetClassById;
+using Dziennik.Application.Student.Queries.GetStudentById;
 using Dziennik.Application.Subject.Commands.CreateSubject;
 using Dziennik.Application.Subject.Commands.DeleteSubject;
 using Dziennik.Application.Subject.Queries.GetAllSubjects;
@@ -23,6 +25,13 @@ namespace Dziennik.MVC.Controllers
             var classes = await _mediator.Send(query);
 
             return View(classes);
+        }
+
+        [Route("Class/{id}/Details")]
+        public async Task<IActionResult> Details(int id)
+        {
+            var dto = await _mediator.Send(new GetClassByIdQuery(id));
+            return View(dto);
         }
 
     }
