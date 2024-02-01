@@ -20,13 +20,18 @@ $(document).ready(function () {
     function renderMarks(marks) {
         $("#marks").empty();
 
+        if (marks.length === 0) {
+            $("#marks").append("<p>There are currently no item.</p>");
+            return;
+        }
+
         var tableElement = $("<div>").addClass("table-responsive");
         var table = $("<table>").addClass("table table-bordered");
-        var thead = $("<thead>").append("<tr><th scope='col'>Subjects</th><th scope='col'>Marks</th></tr>");
+        var thead = $("<thead>").append("<tr><th scope='col'>Subjects</th><th scope='col'>Grades</th></tr>");
         var tbody = $("<tbody>");
         var groupedMarks = {};
-        marks.forEach(function (mark) {
 
+        marks.forEach(function (mark) {
             var subjectName = mark.subjectName;
             var markValue = mark.value || "No Grades";
 
@@ -36,16 +41,15 @@ $(document).ready(function () {
                 groupedMarks[subjectName].push(markValue);
             }
         });
-         Object.keys(groupedMarks).forEach(function (subjectName) {
-        var markValues = groupedMarks[subjectName];
-        var markValueString = markValues.join(', ');
-        var row = $("<tr>").append("<td>" + subjectName + "</td><td>" + markValueString + "</td>");
-        tbody.append(row);
-    });
 
+        Object.keys(groupedMarks).forEach(function (subjectName) {
+            var markValues = groupedMarks[subjectName];
+            var markValueString = markValues.join(', ');
+            var row = $("<tr>").append("<td>" + subjectName + "</td><td>" + markValueString + "</td>");
+            tbody.append(row);
+        });
 
         table.append(thead, tbody);
-
         tableElement.append(table);
         $("#marks").append(tableElement);
     }

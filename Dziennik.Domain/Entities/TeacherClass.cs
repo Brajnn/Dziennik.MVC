@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Dziennik.Domain.Entities
 {
-    public class Subject
+    public class TeacherClass
     {
-        public int SubjectId { get; set; }
-        public string Name { get; set; }
         public int TeacherId { get; set; }
         public Teacher Teacher { get; set; }
-        public List<Mark> Marks { get; set; } = new List<Mark>();
+
+        public int ClassId { get; set; }
+        public Class Class { get; set; }
     }
 }

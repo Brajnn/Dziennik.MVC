@@ -14,11 +14,13 @@ namespace Dziennik.Application.Student.Commands.CreateStudent
     {
         private readonly IMapper _mapper;
         private readonly IStudentRepository _studentRepository;
+        private readonly IClassRepository _classRepository;
 
-        public CreateStudentCommandHandler(IStudentRepository studentRepository, IMapper mapper)
+        public CreateStudentCommandHandler(IStudentRepository studentRepository, IClassRepository classRepository, IMapper mapper)
         {
             _mapper = mapper;
             _studentRepository=studentRepository;
+            _classRepository = classRepository;
         }
 
         public async Task<Unit> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
