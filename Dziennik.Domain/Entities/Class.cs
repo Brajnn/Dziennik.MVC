@@ -10,6 +10,7 @@ namespace Dziennik.Domain.Entities
     {
         public int ClassId { get; set; }
         public string ClassName { get; set; }
+        public string Specialization { get; set; }
         public List<Student> Students { get; set; }
         public List<Teacher> Teachers { get; set; }
     }

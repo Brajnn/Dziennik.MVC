@@ -1,5 +1,6 @@
 ﻿
 using AutoMapper;
+using Dziennik.Application.Class.Queries.GetAllClasses;
 using Dziennik.Application.Mark.Commands;
 using Dziennik.Application.Mark.Queries.GetMark;
 using Dziennik.Application.Student;
@@ -13,6 +14,7 @@ using Dziennik.MVC.Extensions;
 using Dziennik.MVC.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using X.PagedList;
 
@@ -51,6 +53,9 @@ namespace Dziennik.MVC.Controllers
 
         public ActionResult Create()
         {
+            var classes = _mediator.Send(new GetAllClassesQuery()).Result;
+            ViewBag.ClassesList = new SelectList(classes, "ClassId", "ClassName");
+
             return View();
         }
 
@@ -59,6 +64,8 @@ namespace Dziennik.MVC.Controllers
         {
             if(!ModelState.IsValid)
             {
+                var classes = _mediator.Send(new GetAllClassesQuery()).Result;
+                ViewBag.ClassesList = new SelectList(classes, "ClassId", "ClassName");
                 return View(command);
             }
 

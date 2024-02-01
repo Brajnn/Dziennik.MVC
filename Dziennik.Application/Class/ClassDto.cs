@@ -1,4 +1,5 @@
 ﻿using Dziennik.Application.Student;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace Dziennik.Application.Class
     {
         public int ClassId { get; set; }
         public string ClassName { get; set; } = default!;
+        public string Specialization { get; set; } = default!;
         public List<StudentDto> Students { get; set; }
     }
 }

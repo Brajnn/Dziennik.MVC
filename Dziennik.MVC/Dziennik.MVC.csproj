@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\src\School.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\js\Student\Edit.js" />
+    <None Include="wwwroot\src\School.jpg" />
   </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.1" />
